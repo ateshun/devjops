@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Datas from "./data/data.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="header">
+        <div className="text">devjobs</div>
+        <div className="icon">
+          <FontAwesomeIcon icon={faBars} />
+        </div>
+      </div>
+      <div className="body">
+        {Datas &&
+          Datas.map((data) => {
+            return (
+              <div className="box1" key={data.id}>
+                <img
+                  className="iconedit"
+                  src={data.logo}
+                  alt=""
+                  style={{ backgroundColor: data.logoBackground }}
+                />{" "}
+                <br />
+                <p>
+                  {data.postedAt} . {data.contract}
+                </p>
+                <h3>{data.position}</h3>
+                <p>{data.company}</p>
+                <p className="loc">{data.location}</p>
+              </div>
+            );
+          })}
+      </div>
+      <button>Load More</button>
     </div>
   );
 }
